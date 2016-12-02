@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Подходы к построению критичных стилей</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="dist/app.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Подходы к построению критичных стилей во фронтенде</h1>
+		<p>Мария Гришкевич, Фьюз Эйт Онлайн, 2016.</p>
+	</header>
+    <section class="slide">
+        <h2>Подходы к построению критичных стилей во фронтенде</h2>
+				<img src="app/img/me.jpg" class="me"  width="400">
+				<p class="small">Меня зовут Мария Гришкевич.</p>
+				<p class="small">Я - фронтенд-разаработчик в компании <a target="_blank" href="http://fuse8.ru">Фьюз Эйт Онлайн</a>.</p>
+				<p class="small">Наша компания - подразделение <a target="_blank" href="http://deleteagency.com">Delete Agency</a>.</p>
+				<p class="small">Сегодня я расскажу вам о способах оптимизации CSS файлов.</p>
+				<div class="img-grid">
+					<a href="https://www.safestore.co.uk/" target="_blank" class="img-grid__link"><img src="app/img/safestore_thumb.jpg" class="img-grid__item"></a>
+					<a href="http://www.deleteagency.com/work/red-bull-bedroom-jam-2014" target="_blank" class="img-grid__link"><img src="app/img/red bull.jpg" class="img-grid__item"></a>
+					<a href="http://www.deleteagency.com/work/carluccios" target="_blank" class="img-grid__link"><img src="app/img/carluccios.jpg" class="img-grid__item" ></a>
+					<a href="http://signature.savethechildren.net/" target="_blank" class="img-grid__link"><img src="app/img/save the children.jpg" class="img-grid__item"></a>
+			  </div>
+
+    </section>
+    <section class="slide">
+        <h2>Сайты и оптимизация</h2>
+        <p>Какими бы сложными ни были функционал и дизайн любого сайта, на определенном этапе (чем раньше - тем лучше) появляются требования к его производительности.</p>
+        <p><strong>Хороший сайт должен:</strong></p>
+        <ul>
+          <li>грузиться быстро, чтобы пользователи с него не ушли;</li>
+          <li>работать одинаково хорошо при разной скорости интернета;</li>
+          <li>быстро давать пользователю нужную информацию.</li>
+        </ul>
+    </section>
+    <section class="slide">
+        <h2>Немного цифр...</h2>
+        <dl class="extrasmall">
+					<dt><strong>Amazon</strong></dt>
+					<dd>Увеличение времени загрузки страницы на <strong>100мс</strong> уменьшает продажи на <strong>1%</strong>. <a href="http://www.svennerberg.com/2008/12/page-load-times-vs-conversion-rates/" class="arr-link" target="_blank">&rarr;</a></dd>
+					<dt><strong>Google</strong></dt>
+					<dd>Увеличение времени загрузки с <strong>400мс</strong> до <strong>900мс</strong> привело к <strong>20%</strong> уменьшению траффика и доходов от рекламы. <a href="http://glinden.blogspot.ru/2006/11/marissa-mayer-at-web-20.html" class="arr-link" target="_blank">&rarr;</a></dd>
+					<dt><strong>Yahoo</strong></dt>
+					<dd>Уменьшение времени загрузки на <strong>400мс</strong> увеличило траффик на <strong>9%</strong>. <a href="https://www.sitepoint.com/page-speed-business-metrics/" class="arr-link" target="_blank">&rarr;</a></dd>
+					<dt><strong>Walmart</strong></dt>
+					<dd>Уменьшение времени загрузки на <strong>1c</strong> увеличивает число конверсий на <strong>2%</strong>. <a class="arr-link" href="http://www.webperformancetoday.com/2012/02/28/4-awesome-slides-showing-how-page-speed-correlates-to-business-metrics-at-walmart-com/" target="_blank">&rarr;</a></dd>
+					<dt><strong>Mozilla</strong></dt>
+					<dd>Снижение времени загрузки на <strong>2.2с</strong> увеличило число конверсий на <strong>15.4%</strong>. <a class="arr-link" href="https://blog.mozilla.org/metrics/2010/04/05/firefox-page-load-speed-%E2%80%93-part-ii/" target="_blank">&rarr;</a></dd>
+					<dt><strong>Shopzilla</strong></dt>
+					<dd>Снижение времени загрузки c <strong>6с</strong> до <strong>1.2с</strong> увеличило продажи до <strong>12%</strong>. <a class="arr-link" href="http://www.globaldots.com/how-website-speed-affects-conversion-rates/" target="_blank">&rarr;</a></dd>
+        </dl>
+    </section>
+    <section class="slide">
+        <h2>Для измерения производительности можно использовать различные сервисы: </h2>
+        <ul>
+          <li><a href="https://developers.google.com/speed/pagespeed/" target="_blank">Google Page Speed</a>;</li>
+          <li><a href="https://www.webpagetest.org/r">Web Page Test</a>;</li>
+          <li><a href="https://varvy.com/pagespeed">Varvy</a>;</li>
+          <li>и т.д.</li>
+        </ul>
+        <p>Даже если вам кажется, что все работает хорошо, на самом деле все может быть...</p>
+    </section>
+    <section class="slide">
+        <img class="cover"src="app/img/slide-2.jpg">
+    </section>
+    <section class="slide">
+        <h2>Стили и блокировка рендеринга</h2>
+				<p>Поскольку тема этого доклада -  роль CSS в процессе оптимизации...</p>
+        <div class="double">
+        <div class="nobreak">
+          <p>Google Page Speed:</p>
+          <img src="app/img/critical-google.jpg"  width="400">
+        </div>
+        <div class="nobreak">
+          <p>Varvy:</p>
+          <img src="app/img/critical-varvy.jpg" width="400">
+        </div>
+      </div>
+  	</section>
+  	<section class="slide">
+        <h2>Критический путь рендеринга</h2>
+        <p>Как правило, сайты имеют большое количество стилей и скриптов. Загрузка больших файлов CSS и JS может значительно увеличить время загрузки страницы.</p>
+        <p><strong class="green">Критический путь рендеринга – это набор минимально необходимых для начала отрисовки страницы действий, ресурсов и вычислений.</strong></p>
+    </section>
+  <section class="slide">
+      <h2>Критический путь рендеринга и CSS</h2>
+      <p>Чтобы ускорить рендеринг, стили можно разбить на две части.</p>
+      <p>Первая часть называется критичными стилями, и формируется так:</p>
+      <ul>
+        <li>выбирается минимальное количество CSS правил, которые требуются для отображения того, что видимо на экране при первоначальном попадании на страницу;</li>
+        <li>эти правила вставляются напрмую в заголовок страницы;</li>
+        <li>все остальные стили из заголовка удаляются.</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <p>Вторая часть - это все остальное, и оно может грузиться внизу страницы асинхронно.</p>
+      <p>Гугл рекомендует асинхронную подгрузку стилей <span class="green small">(надежно)</span></p>
+      <pre class="small">
+        <code>var raf = requestAnimationFrame || mozRequestAnimationFrame ||</code>
+        <code>          webkitRequestAnimationFrame || msRequestAnimationFrame;</code>
+        <code>if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });</code>
+        <code>else window.addEventListener('load', loadDeferredStyles);</code>
+      </pre>
+      <p>W3C Editor's Draft 14 November 2016 <span class="small">(<a href="https://github.com/filamentgroup/loadCSS">polyfill</a>, <span class="red">не очень надежно</span>)</span></p>
+      <pre class="small">
+        <code>&lt;link href="..." rel="preload" as="style" onload=""&gt;</code>
+      </pre>
+    </section>
+	<section class="slide">
+  	      <h2>СSS в заголовке страницы</h2>
+          <img class="critical-img" src='app/img/without-critical.png' alt="network without critical styles"/>
+  	      <h2>Критичный CSS и асинхронная подгрузка</h2>
+          <img class="critical-img"  src='app/img/with-critical.png' alt="network with critical styles"/>
+
+	    </section>
+     <section class="slide">
+	      <h2>Критичные стили и подводные камни</h2>
+	      <p>Асинхронная загрузка стилей может что-то сломать в вашем коде (например, если javascript просчитает какие-то размеры до загрузки CSS).</p>
+	      <p>Без нужных шрифтов сайт будет выглядеть по-другому. Возможно, надо будет подбирать встроенные шрифты, похожие на используемые в проекте, или дополнительно генерировать критичные шрифты.</p>
+    </section>
+    <section class="slide">
+        <h2>Подходы к созданию критичных стилей </h2>
+        <p>Все подходы к можно условно разделить на:</p>
+        <ul>
+            <li>Ручные;</li>
+            <li>Автоматические;</li>
+            <li>Полуавтоматические.</li>
+        <ul>
+    </section>
+    <section class="slide">
+        <h2>Ручной подход</h2>
+        <p>Вы создаете отдельный файл или файлы и вручную копируете туда нужные правила.</p>
+        <ul>
+            <li>Есть тотальный контроль над тем, что попадет в заголовок страницы;</li>
+            <li>Не ресурсоемок для маленьких сайтов;</li>
+            <li>Медленный для больших сайтов;</li>
+            <li>После каждого изменения надо править и критичные стили;</li>
+            <li>Стили для одного и того же лежат в разных файлах;</li>
+            <li>С течением времени - путаница.</li>
+        </ul>
+    </section>
+    <section class="slide">
+        <h2>Автоматический подход</h2>
+        <p>Примеры: <a href="https://github.com/pocketjoso/penthouse">Penthouse</a>, <a href="https://github.com/addyosmani/critical">Critical</a>, и т.д.<p>
+        <pre class="small">
+          <code>var config = {</code>
+          <code> url: 'http://uat.safestore.co.uk/',</code>
+          <code> css: path.resolve('dist/result.css'),</code>
+          <code> w: 1280,</code>
+          <code> h: 1100</code>
+          <code>};   </code>
+          <code>penthouseAsync(config, function (err, criticalCSS) {</code>
+           <code>fileSystem.writeFile('dist/critical.css', criticalCSS);</code>
+          <code>});</code>
+        </pre>
+    </section>
+    <section class="slide">
+			  <h2>Недостатки автоматического подхода</h2>
+        <ul>
+            <li>Долго;</li>
+            <li>Неустойчиво (могут получаться критичные файлы разного размера);</li>
+            <li>Не работает, если сайт в данный момент медленно грузится;</li>
+            <li>Надо залить изменения, сгенерировать критичные стили и снова залить;</li>
+            <li>В критичные стили попадает не только нужное, но и ненужное;</li>
+            <li>Стили генерируются под определенный размер экрана и по конкретной странице</li>
+            <li>На не одностраничных сайтах User Experience страдает</li>
+        <ul>
+    </section>
+    <section class="slide">
+        <h2>Полуавтоматический подход</h2>
+        <p>Примеры: <a href="https://www.npmjs.com/package/postcss-critical-split">postcss-critical-split</a>,<a href="https://www.npmjs.com/package/postcss-split">postcss-split</a>, и т.д.<p>
+        <p>Вы просто выделяете в стилях то, что считаете критичными стилями:<p>
+        <pre class="small">
+            <code>body {</code>
+            <code>    /* critical:start */</code>
+            <code>    font: 15px/1.7em sans-serif;</code>
+            <code>    .grotesk-light();</code>
+            <code>    /* critical:end */</code>
+            <code>    -moz-osx-font-smoothing: grayscale;</code>
+            <code>    -webkit-font-smoothing: antialiased;</code>
+            <code>}</code>
+        </pre>
+    </section>
+    <section class="slide">
+				<p>Если какие-то компоненты могут быть наверху, а остальные - нет, то можно сделать так</p>
+        <pre class="small double">
+            <code>.component {</code>
+            <code>    /* critical:start */</code>
+            <code>    opacity: 0;</code>
+            <code>    /* critical:end */</code>
+            <code>    opacity: 1;</code>
+            <code>    transition: opacity .5s ease;</code>
+            <code>}</code>
+            <code>.component-hero {</code>
+            <code>    /* critical:start */</code>
+            <code>    opacity: 1;</code>
+            <code>    transition: none;</code>
+            <code>    /* critical:end */</code>
+            <code>    ...</code>
+            <code>}</code>
+        </code></pre>
+        <p>В итоге для компонент, не описанных в критичных стилях, получаем красивую fade in анимацию при загрузке.<p>
+    </section>
+    <section class="slide">
+        <h2>Полуавтоматический подход с Webpack</h2>
+        <ul>
+            <li>Из коробки не работает, надо подключать отдельно, например, через npm скрипты;</li>
+            <li>Вследствие этого минификацию тоже надо подключать через npm скрипты;</li>
+            <li>Неожиданные проблемы подстерегают использующих UglifyJsPlugin.</li>
+        <ul>
+    </section>
+    <section class="slide">
+        <h2>Postcss Critical Split и npm scripts</h2>
+				<pre class="small">
+					<code>"scripts": {</code>
+					<code> 	"Production": ... </code>
+					<code>	"postProduction": "npm run critical"</code>
+					<code>	"critical":</code>
+					<code>			"postcss -u postcss-critical-split --postcss-critical-split.output critical </code>
+					<code>						-o dist/critical.css dist/app.css"</code>
+				  <code>}</code>
+				</pre>
+    </section>
+    <section class="slide">
+        <h2>UglifyJsPlugin</h2>
+				<div class="double">
+        <pre class="small nobreak">
+            <code>{</code>
+            <code>    test   : /\.less$/,</code>
+            <code>    loader : </code>
+            <code>      ExtractTextPlugin.extract(</code>
+						<code>           'style', </code>
+						<code>           'css!postcss!less', </code>
+						<code>           { allChunks: false }</code>
+						<code>       )</code>
+            <code>}</code>
+				</pre>
+        <pre class="small nobreak">
+    				<code>new webpack.optimize.UglifyJsPlugin({</code>
+    				<code>  compress : {</code>
+    				<code>      warnings     : false,</code>
+    				<code>      drop_console : false,</code>
+    				<code>      unsafe       : false</code>
+    				<code>  },</code>
+            <code>  output: {</code>
+            <code>      comments: false,</code>
+            <code>  }</code>
+    				<code>});</code>
+        </pre>
+			  </div>
+        <p>Настройки правильные, а комментарии не сохраняются!</p>
+    </section>
+    <section class="slide">
+        <p>У многих вебпак загрузчиков есть встроенная опция минификации.<p>
+			  <p>UglifyJsPlugin при работе включает такие опции <span class="small">(и работает медленноооо).</span><p>
+        <p>Поэтому надо внимательно отлючать минификацию:</p>
+        <pre class="small">
+            <code>{</code>
+            <code>    test   : /\.less$/,</code>
+            <code>    loader : ExtractTextPlugin.extract(</code>
+						<code>       'style', </code>
+						<code>       'css?<strong>-minimize</strong>!postcss?!less?<Strong>-compress</strong>',</code>
+						<code>       { allChunks: false }</code>
+						<code>    )</code>
+            <code>}</code>
+        </pre>
+    </section>
+    <section class="slide">
+			<h2>Достоинства полуавтоматического подхода</h2>
+			<ul>
+					<li>Вы сами контролируете что вам нужно, а что нет;</li>
+					<li>Все ваши стили хранятся в одном месте;</li>
+					<li>В отличие от автоматического подхода, вы можете улучшить user experience;</li>
+					<li>Не требует значительного времени на любом этапе;</li>
+					<li>CSS остается валидным, и всегда можно отказаться от генерации критичных стилей.</li>
+			<ul>
+    </section>
+    <section class="slide">
+      <h2>Выводы</h2>
+      <ul>
+        <li>Критичные стили смогут ускорить рендеринг сайта;</li>
+        <li>Однако они могут как улучшить, так и ухудшить User Experience;</li>
+        <li>Не надо бояться трудностей, но важно выбрать правильный подход;</li>
+        <li>Для одностраничных сайтов может подойти автоматический режим, для прочих скорее всего предпочтителен полуавтоматический.</li>
+      </ul>
+    </section>
+    <section class="slide center">
+			<p><img  class="github-img" src="app/img/github.svg"/><a target="_blank" href="https://github.com/fr-ench/critical-css-presentation">fr-ench</a></p>
+			<img src="app/img/following.gif"/>
+		</section>
+  	<div class="progress"></div>
+    <script src="dist/app.js"></script>
+  </body>
+</html>

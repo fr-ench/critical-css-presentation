@@ -1,0 +1,60 @@
+.shower.list {
+  background: url(../pictures/linen.png) top left repeat;
+}
+
+.nobreak {
+  break-inside: avoid;
+}
+.small {
+  font-size: .7em;
+}
+.extrasmall {
+  font-size: .65em;
+}
+.center {
+  text-align: center;
+}
+
+.me {
+  max-width: 25%;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 40px;
+}
+
+.img-grid {
+  clear: both;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.img-grid__link {
+  flex: 1 1 auto;
+  width: 100%;
+}
+.img-grid__item {
+  height: auto;
+  display: block;
+  width: 100%;
+}
+.slide .arr-link {
+  background: none;
+}
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.github-img {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 20px;
+}
+.critical-img {
+    display: bock;
+    max-width: 100%;
+}
